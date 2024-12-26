@@ -12,13 +12,14 @@ public class Question {
     private int totalUpVote;
     private int totalDownVote;
     private List<Comment> commentList;
-    public Question(User user, String question){
+    public Question(User user, String question, int ind){
         this.user = user;
         this.question = question;
         this.answerList = new ArrayList<>();
         this.totalUpVote = 0;
         this.totalDownVote = 0;
         this.commentList = new ArrayList<>();
+        this.id = ind;
     }
 
     public void updateTotalUpvote(){

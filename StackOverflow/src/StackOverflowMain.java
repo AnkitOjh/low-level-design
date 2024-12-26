@@ -12,7 +12,7 @@ public class StackOverflowMain {
     private StackOverflowMain(Posts posts){
         this.posts = posts;
     }
-    public StackOverflowMain getInstance(Posts posts){
+    public static StackOverflowMain getInstance(Posts posts){
         if(instance != null){
             return instance;
         }
@@ -51,7 +51,9 @@ public class StackOverflowMain {
         List<String> questionName = new ArrayList<>();
         questionList.forEach(question -> {
             questionName.add(question.getQuestion());
+            System.out.println(question.getQuestion());
         });
+
         return questionName;
     }
 
