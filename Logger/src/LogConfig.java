@@ -1,4 +1,5 @@
 import Appender.LogAppender;
+import LogMessager.LogLevel;
 
 public class LogConfig {
     private LogLevel logLevel;
