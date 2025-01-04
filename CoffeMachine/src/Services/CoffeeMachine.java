@@ -58,4 +58,15 @@ public class CoffeeMachine {
         this.amount = amount;
     }
 
+    public void insertPayment(int amount){
+        this.coffeeMachineState.addMoney(amount);
+    }
+
+    public void selectCoffee(CoffeeType coffeeType){
+        this.coffeeMachineState.selectCoffeeType(coffeeType);
+    }
+
+    public void despenseCoffee(){
+        this.coffeeMachineState.despenseCoffee();
+    }
 }

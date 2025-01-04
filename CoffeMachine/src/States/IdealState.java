@@ -21,6 +21,7 @@ public class IdealState implements CoffeeMachineState{
     @Override
     public void addMoney(int amount) {
         coffeeMachine.addAmount(amount);
+        System.out.println("Money added successfully");
         this.readyState = new ReadyState(amount,this.coffeeMachine);
         coffeeMachine.setState(readyState);
     }

@@ -9,7 +9,7 @@ import java.util.Map;
 
 
 public class Coffee {
-    private CoffeeType coffeeType;
+    private final CoffeeType coffeeType;
     private Map<Ingredient,Integer> recipe;
     private BigDecimal price;
 
