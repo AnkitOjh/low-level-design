@@ -1,17 +1,28 @@
 package States;
 
+import Enums.CoffeeType;
+import Services.CoffeeMachine;
+
+import java.math.BigDecimal;
+
 public class IdealState implements CoffeeMachineState{
-    private CoffeeMachineState coffeeMachineState;
+    private CoffeeMachine coffeeMachine;
 
+    private ReadyState readyState;
 
+    public IdealState(CoffeeMachine coffeeMachine){
+        this.coffeeMachine = coffeeMachine;
+    }
     @Override
-    public void selectCoffeeType() {
-
+    public void selectCoffeeType(CoffeeType coffeeType) {
+        System.out.println("Pay money first");
     }
 
     @Override
-    public void addMoney() {
-        System.out.println("Please select the coffee from the menu first");
+    public void addMoney(int amount) {
+        coffeeMachine.addAmount(amount);
+        this.readyState = new ReadyState(amount,this.coffeeMachine);
+        coffeeMachine.setState(readyState);
     }
 
     @Override

@@ -1,3 +1,5 @@
+package Services;
+
 import Entity.Ingredient;
 import Enums.CoffeeType;
 import States.CoffeeMachineState;
@@ -12,8 +14,10 @@ public class CoffeeMachine {
     private Inventory inventory;
     private static CoffeeMachine coffeeMachine;
     private CoffeeMachineState coffeeMachineState;
+
+    private int amount;
     private CoffeeMachine(){
-        this.coffeeMachineState = new IdealState();
+        this.coffeeMachineState = new IdealState(this);
         this.inventory = new Inventory();
     }
 
@@ -49,6 +53,9 @@ public class CoffeeMachine {
             map.put(coffee.getCoffeeType().toString(),coffee.getPrice());
         });
         return map;
+    }
+    public void addAmount(int amount){
+        this.amount = amount;
     }
 
 }

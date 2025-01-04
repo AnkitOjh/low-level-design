@@ -20,4 +20,8 @@ public class Ingredient {
     public void setQuantity(int quantity){
         this.quantity = quantity;
     }
+
+    public void reduceIngredient(int quantity){
+        this.quantity = this.quantity - quantity;
+    }
 }

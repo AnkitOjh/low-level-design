@@ -1,5 +1,8 @@
+package Services;
+
 import Entity.Ingredient;
 import Enums.CoffeeType;
+import Services.Coffee;
 
 import java.util.*;
 
@@ -35,6 +38,13 @@ public class Inventory {
         }
     }
 
+    public void removeIngredient(CoffeeType coffeeType){
+        Coffee coffee = coffeeMap.get(coffeeType);
+        for(Map.Entry<Ingredient, Integer> entry : coffee.getRecipe().entrySet()){
+            entry.getKey().reduceIngredient(entry.getValue());
+        }
+    }
+
     public List<Coffee> giveAvailableCoffeeOptions(){
         List<Coffee> filteredCoffeeList = new ArrayList<>();
         for(Map.Entry<CoffeeType, Coffee> entry: this.coffeeMap.entrySet()){
@@ -47,9 +57,13 @@ public class Inventory {
     }
 
     public List<Ingredient> notifyForEmptyIngredient(){
-
+        List<Ingredient> emptyList = new ArrayList<>();
+        for(Map.Entry<String, Ingredient> integerEntry : this.ingredientIntegerMap.entrySet()){
+            if(integerEntry.getValue().getQuantity() <= 0){
+                emptyList.add(integerEntry.getValue());
+            }
+        }
+        return emptyList;
     }
-
-
 
 }
