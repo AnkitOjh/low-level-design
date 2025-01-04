@@ -4,6 +4,7 @@ import States.CoffeeMachineState;
 import States.IdealState;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,8 +42,13 @@ public class CoffeeMachine {
         this.inventory.addIngredient(ingredient);
     }
 
-    public Map<String, Integer> getMenu(){
-
+    public Map<String, BigDecimal> getMenu(){
+        List<Coffee> coffeeList = this.inventory.giveAvailableCoffeeOptions();
+        Map<String, BigDecimal> map = new HashMap<>();
+        coffeeList.forEach(coffee -> {
+            map.put(coffee.getCoffeeType().toString(),coffee.getPrice());
+        });
+        return map;
     }
 
 }

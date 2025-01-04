@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+
 public class Coffee {
     private CoffeeType coffeeType;
     private Map<Ingredient,Integer> recipe;
@@ -22,6 +23,19 @@ public class Coffee {
 
     public CoffeeType getCoffeeType(){
      return this.coffeeType;
+    }
+
+    public Map<Ingredient, Integer> getRecipe(){
+        return this.recipe;
+    }
+
+    public boolean isAvailable(){
+        for(Map.Entry<Ingredient, Integer> entry : this.recipe.entrySet()){
+            if(entry.getKey().getQuantity() < entry.getValue()){
+                return false;
+            }
+        }
+        return true;
     }
 
 

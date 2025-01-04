@@ -36,7 +36,14 @@ public class Inventory {
     }
 
     public List<Coffee> giveAvailableCoffeeOptions(){
+        List<Coffee> filteredCoffeeList = new ArrayList<>();
+        for(Map.Entry<CoffeeType, Coffee> entry: this.coffeeMap.entrySet()){
+            if(entry.getValue().isAvailable()){
+                filteredCoffeeList.add(entry.getValue());
+            }
 
+        }
+        return filteredCoffeeList;
     }
 
     public List<Ingredient> notifyForEmptyIngredient(){
