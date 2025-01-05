@@ -46,7 +46,7 @@ public class CoffeeMachine {
         this.inventory.addIngredient(ingredient);
     }
 
-    public Map<String, BigDecimal> getMenu(){
+    public synchronized Map<String, BigDecimal> getMenu(){
         List<Coffee> coffeeList = this.inventory.giveAvailableCoffeeOptions();
         Map<String, BigDecimal> map = new HashMap<>();
         coffeeList.forEach(coffee -> {

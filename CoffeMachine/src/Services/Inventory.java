@@ -15,7 +15,7 @@ public class Inventory {
         this.ingredientIntegerMap = new HashMap<>();
     }
 
-    public void addCoffee(Coffee coffee){
+    public synchronized void addCoffee(Coffee coffee){
         if(coffeeMap.containsKey(coffeeMap.containsKey(coffee.getCoffeeType()))){
             System.out.println("This coffee type is already added");
         }
@@ -24,7 +24,7 @@ public class Inventory {
         }
     }
 
-    public void addIngredient(Ingredient ingredient){
+    public synchronized void addIngredient(Ingredient ingredient){
         if(ingredientIntegerMap.containsKey(ingredient.getName())){
             System.out.println("Updating the ingridient");
             if(ingredient.getQuantity() <= 0){
@@ -38,14 +38,14 @@ public class Inventory {
         }
     }
 
-    public void removeIngredient(CoffeeType coffeeType){
+    public synchronized void removeIngredient(CoffeeType coffeeType){
         Coffee coffee = coffeeMap.get(coffeeType);
         for(Map.Entry<Ingredient, Integer> entry : coffee.getRecipe().entrySet()){
             entry.getKey().reduceIngredient(entry.getValue());
         }
     }
 
-    public List<Coffee> giveAvailableCoffeeOptions(){
+    public synchronized List<Coffee> giveAvailableCoffeeOptions(){
         List<Coffee> filteredCoffeeList = new ArrayList<>();
         for(Map.Entry<CoffeeType, Coffee> entry: this.coffeeMap.entrySet()){
             if(entry.getValue().isAvailable()){
