@@ -10,6 +10,8 @@ public class Inventory {
     private Map<String, Ingredient> ingredientIntegerMap;
     private Map<CoffeeType, Coffee> coffeeMap;
 
+    private List<NotificationService> ObserverList;
+
     public Inventory(){
         this.coffeeMap = new HashMap<>();
         this.ingredientIntegerMap = new HashMap<>();
@@ -51,11 +53,26 @@ public class Inventory {
             if(entry.getValue().isAvailable()){
                 filteredCoffeeList.add(entry.getValue());
             }
-
+            else{
+                notifyObserver();
+            }
         }
         return filteredCoffeeList;
     }
 
+    public void addObserver(NotificationService notificationService){
+        ObserverList.add(notificationService);
+    }
+
+    public void removeObserver(NotificationService notificationService){
+        ObserverList.remove(notificationService);
+    }
+
+    public void notifyObserver(){
+        for(NotificationService observer: ObserverList){
+            observer.sendMessage();
+        }
+    }
     public List<Ingredient> notifyForEmptyIngredient(){
         List<Ingredient> emptyList = new ArrayList<>();
         for(Map.Entry<String, Ingredient> integerEntry : this.ingredientIntegerMap.entrySet()){
