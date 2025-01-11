@@ -25,7 +25,7 @@ public class QueueProcessor {
         return new Message(message);
     }
 
-    public void publishMessage(String topicName,String msg,Publisher publisher){
+    public void publishMessage(String topicName,String msg,String publisher){
         this.topicManager.publishMessage(topicName, new Message(msg), publisher);
     }
 }

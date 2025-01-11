@@ -26,8 +26,13 @@ public class Topic {
     public synchronized void addSubscriber(ISubscriber subscriber) {
         subscribers.add(subscriber);
     }
-    public synchronized boolean checkPublisher(Publisher publisher){
-        return publishers.contains(publisher);
+    public synchronized boolean checkPublisher(String publisherName){
+        for(Publisher publisher: publishers){
+            if(publisher.getName().equalsIgnoreCase(publisherName) == true){
+                return true;
+            }
+        }
+        return false;
     }
     public synchronized boolean checkListener(ISubscriber subscriber){
         return subscribers.contains(subscriber);

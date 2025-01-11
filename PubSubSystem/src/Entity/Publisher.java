@@ -28,4 +28,8 @@ public class Publisher {
         System.out.println("Topic added to publisher successfully");
         topicList.add(topic);
     }
+
+    public String getName(){
+        return this.name;
+    }
 }

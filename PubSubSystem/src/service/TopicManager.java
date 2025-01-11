@@ -48,13 +48,16 @@ public class TopicManager {
         }
     }
 
-    public void publishMessage(String topicName, Message message, Publisher publisher){
+    public void publishMessage(String topicName, Message message, String publisherName){
         Topic topic = checkForTopic(topicName);
         if(topic != null){
-            if(topic.checkPublisher(publisher) == true){
+            if(topic.checkPublisher(publisherName) == true){
                 topic.addMessage(message);
                 System.out.println("Publisher has added the message");
             }
+        }
+        else{
+            System.out.println("This topic is not created");
         }
     }
 
