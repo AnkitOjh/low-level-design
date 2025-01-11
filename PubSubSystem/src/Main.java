@@ -16,6 +16,7 @@ public class Main {
 
         //Negative scenio
         queueProcessor.publishMessage("topic-3","message from pub-1","pub-1");
+        System.out.println("After this execution");
         queueProcessor.subscribeForPublisher("topic-3",new Publisher("pub-1"));
     }
 }

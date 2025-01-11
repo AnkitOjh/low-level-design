@@ -26,6 +26,12 @@ public class QueueProcessor {
     }
 
     public void publishMessage(String topicName,String msg,String publisher){
-        this.topicManager.publishMessage(topicName, new Message(msg), publisher);
+        try{
+            this.topicManager.publishMessage(topicName, new Message(msg), publisher);
+        } catch(RuntimeException e){
+            System.out.println("Exception will thrown");
+            throw e;
+        }
+
     }
 }

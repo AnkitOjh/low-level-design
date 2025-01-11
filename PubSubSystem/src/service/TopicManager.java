@@ -48,7 +48,7 @@ public class TopicManager {
         }
     }
 
-    public void publishMessage(String topicName, Message message, String publisherName){
+    public void publishMessage(String topicName, Message message, String publisherName)  throws  RuntimeException{
         Topic topic = checkForTopic(topicName);
         if(topic != null){
             if(topic.checkPublisher(publisherName) == true){
@@ -57,7 +57,9 @@ public class TopicManager {
             }
         }
         else{
+
             System.out.println("This topic is not created");
+            throw new RuntimeException("This topic is not created");
         }
     }
 
