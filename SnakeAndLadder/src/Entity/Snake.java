@@ -1,18 +1,20 @@
 package Entity;
 
-public class Snake implements Props {
-    private final int[] source;
-    private final int[] destination;
+import java.util.List;
 
-    public Snake(int[] source, int[] destination){
+public class Snake implements Props {
+    private final List<Integer> source;
+    private final List<Integer> destination;
+
+    public Snake(List<Integer> source, List<Integer> destination){
         this.source = source;
         this.destination = destination;
     }
 
-    public int[] getDestination(){
+    public List<Integer> getDestination(){
         return this.destination;
     }
-    public int[] getSource(){
+    public List<Integer> getSource(){
         return this.source;
     }
 

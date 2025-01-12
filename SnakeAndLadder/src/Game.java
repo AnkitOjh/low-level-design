@@ -23,7 +23,7 @@ public class Game {
 
         if(!gameStart){
             Player player = new Player(userName);
-            player.setPosition(new int[]{0,0});
+            player.setPosition(new int[]{1,0});
             playerList.add(player);
             currentPlayer = playerList.get(0);
             this.currentIndex = 0;
@@ -34,7 +34,17 @@ public class Game {
 
     }
 
-    public void move(Player player){
+    public void move(String userName){
+        Player player = null;
+        for(Player player1 : playerList){
+            if(player1.getUserName().equalsIgnoreCase(userName)){
+                player = player1;
+            }
+        }
+        if(player == null){
+            System.out.println("No player is there with this userName "+ userName);
+            return;
+        }
         int dice;
         if(player == currentPlayer){
             this.gameStart = true;
@@ -44,6 +54,8 @@ public class Game {
                 throw new RuntimeException("Winner is "+player.getUserName());
             }
             player.setPosition(destination);
+            System.out.println("Player "+player.getUserName()+
+                    " has moved to "+ player.getPosition()[0]+" "+player.getPosition()[1]);
             if(dice != 6){
                 currentIndex+=1;
                 currentIndex = currentIndex%6;
@@ -55,7 +67,7 @@ public class Game {
         }
         else{
             System.out.println("Its not ur turn");
-            System.out.println("Please do ur turn "+currentPlayer);
+            System.out.println("Please do ur turn "+currentPlayer.getUserName());
         }
     }
 

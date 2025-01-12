@@ -1,19 +1,21 @@
 package Entity;
 
-public class Ladder implements Props{
-    private final int[] source;
-    private final int[] destination;
+import java.util.List;
 
-    public Ladder(int[] source, int[] destination){
+public class Ladder implements Props{
+    private final List<Integer> source;
+    private final List<Integer> destination;
+
+    public Ladder(List<Integer> source, List<Integer> destination){
         this.source = source;
         this.destination = destination;
     }
 
-    public int[] getDestination(){
+    public List<Integer> getDestination(){
         return this.destination;
     }
 
-    public int[] getSource(){
+    public List<Integer> getSource(){
         return this.source;
     }
 }

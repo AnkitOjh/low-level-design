@@ -1,7 +1,9 @@
 package Entity;
 
-public interface Props {
-    public int[] getDestination();
+import java.util.List;
 
-    public int[] getSource();
+public interface Props {
+    public List<Integer> getDestination();
+
+    public List<Integer> getSource();
 }
