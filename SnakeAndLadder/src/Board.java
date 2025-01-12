@@ -47,9 +47,12 @@ public class Board {
             }
         }
         List<Integer> destination = giveDestinationFromprops(temp);
-        if(destination != null){
-            return new int[]{destination.get(0),destination.get(1)};
+        synchronized (this){
+            if(destination != null){
+                return new int[]{destination.get(0),destination.get(1)};
+            }
         }
+
         return temp;
     }
 
@@ -57,8 +60,10 @@ public class Board {
         List<Integer> list = new ArrayList<>();
         list.add(position[0]);
         list.add(position[1]);
-        if(propsHashMap.containsKey(list)){
-            return propsHashMap.get(list).getDestination();
+        synchronized (this){
+            if(propsHashMap.containsKey(list)){
+                return propsHashMap.get(list).getDestination();
+            }
         }
         return null;
     }

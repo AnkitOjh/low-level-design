@@ -19,7 +19,7 @@ public class Game {
         playerList = new ArrayList<>();
     }
 
-    public void createPlayer(String userName){
+    public synchronized void createPlayer(String userName){
 
         if(!gameStart){
             Player player = new Player(userName);
@@ -34,7 +34,7 @@ public class Game {
 
     }
 
-    public void move(String userName){
+    public synchronized void move(String userName){
         Player player = null;
         for(Player player1 : playerList){
             if(player1.getUserName().equalsIgnoreCase(userName)){
