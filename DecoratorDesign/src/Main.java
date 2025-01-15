@@ -1,5 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Coffee coffee = new Milk(new Cream(new Expresso()));
+        System.out.println(coffee.cost());
+
     }
 }
