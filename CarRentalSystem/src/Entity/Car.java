@@ -17,7 +17,7 @@ public class Car {
     private List<Customer> customerList;
 
 
-    public Car(String company, String model, BigDecimal rentPrice,
+    public Car(String carType,String company, String model, BigDecimal rentPrice,
                String year){
         reservationList = new ArrayList<>();
         customerList = new ArrayList<>();
@@ -25,6 +25,7 @@ public class Car {
         this.model = model;
         this.company = company;
         this.rentPrice = rentPrice;
+        this.carType = carType;
     }
 
     public List<Reservation> getResrvation(){

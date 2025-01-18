@@ -2,7 +2,7 @@ package Payment;
 
 public class PaymentContext {
     private IPayment iPayment;
-    PaymentContext(IPayment iPayment){
+    public PaymentContext(IPayment iPayment){
         this.iPayment = iPayment;
     }
     public void execute(){

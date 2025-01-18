@@ -1,13 +1,15 @@
 package Entity;
 
+import java.time.LocalDateTime;
+
 public class Reservation {
-    private int id;
-    private String startDate;
-    private String endDate;
+    private String id;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private Car car;
     private Customer customer;
 
-    public Reservation(String startDate, String endDate, Car car, Customer customer){
+    public Reservation(LocalDateTime startDate, LocalDateTime endDate, Car car, Customer customer){
         this.car = car;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -22,11 +24,24 @@ public class Reservation {
         return this.car;
     }
 
-    public String getStartDate(){
+    public LocalDateTime getStartDate(){
         return this.startDate;
     }
 
-    public String getEndDate(){
+    public LocalDateTime getEndDate(){
         return this.endDate;
+    }
+
+    public void setStartDate(LocalDateTime startDate, LocalDateTime endDate){
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+    public void setId(String id){
+        this.id = id;
+    }
+
+    public String getId(){
+        return this.id;
     }
 }
