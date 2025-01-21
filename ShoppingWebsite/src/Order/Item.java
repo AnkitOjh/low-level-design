@@ -1,12 +1,14 @@
 package Order;
 
 public class Item {
-    private int id;
-    private String name;
+    private final int id;
+    private final String name;
 
-    public void setName(String name){
+    public Item(int id, String name) {
+        this.id = id;
         this.name = name;
     }
+
     public String getName(){
         return this.name;
     }
