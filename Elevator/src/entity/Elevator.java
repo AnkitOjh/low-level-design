@@ -1,8 +1,11 @@
 package entity;
 
+import java.util.List;
+
 public class Elevator {
     private final int elevatorNumber;
     private String direction;
+    private List<Request> requestList;
     Elevator(int elevatorNumber){
         this.elevatorNumber = elevatorNumber;
     }
