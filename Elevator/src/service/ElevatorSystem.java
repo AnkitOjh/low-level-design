@@ -6,13 +6,14 @@ import entity.Floor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ElevatorSystem {
+public class ElevatorSystem{
     List<Elevator> elevatorList;
     public ElevatorSystem(int number, int capacity){
         this.elevatorList = new ArrayList<>();
         for(int i=0;i<number;i++){
-            elevatorList.add(new Elevator(i+1,10));
-
+            Elevator elevator = new Elevator(i+1,10);
+            elevatorList.add(elevator);
+//            new Thread(elevator::run).start();
         }
     }
 
