@@ -1,5 +1,8 @@
 package Entity;
 
+import Service.InsufficientFundException;
+import Service.InsufficientStockException;
+
 public class Stock {
     private String company;
     private int quantity;
@@ -10,19 +13,25 @@ public class Stock {
         this.company = company;
         this.quantity = quantity;
     }
-    public boolean purchaseStock(int quantity){
+    public int purchaseStock(int quantity){
         if(this.quantity>= quantity){
             this.quantity = this.quantity - quantity;
             System.out.println("Stock purchased");
-            return true;
+            return quantity*this.price;
         }
-        return false;
+        else{
+            throw new InsufficientStockException("Insufficient stock");
+        }
     }
 
-    public boolean sellStock(int quantity){
+    public int sellStock(int quantity){
             this.quantity+=quantity;
             System.out.println("Stock sold");
-            return true;
+            if(quantity > 5000){
+                throw new InsufficientStockException("Insuffiecient stock");
+            }
+            System.out.println("Total amount to be paid = "+ quantity*price);
+            return quantity*price;
     }
 
     public int getQuantity(){

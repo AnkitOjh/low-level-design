@@ -15,13 +15,14 @@ public class OrderExecutor {
         this.hashMap = new HashMap<>();
     }
 
-    public void executeOrder(Order order,User user){
-        order.executeOrder();
+    public int executeOrder(Order order,User user){
+
         if(hashMap.containsKey(user)){
             hashMap.get(user).add(order);
         }
         else{
             hashMap.put(user, new ArrayList<>());
         }
+        return order.executeOrder();
     }
 }

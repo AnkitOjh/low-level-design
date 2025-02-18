@@ -14,7 +14,7 @@ public class BuyOrder implements Order{
         this.user = user;
     }
     @Override
-    public void executeOrder() {
-        stock.purchaseStock(quantity);
+    public int executeOrder() {
+        return stock.purchaseStock(quantity);
     }
 }

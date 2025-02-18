@@ -1,5 +1,5 @@
 package Entity;
 
 public interface Order {
-    public void executeOrder();
+    public int executeOrder();
 }
