@@ -4,5 +4,5 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface IStockUpdate {
-    void update(List<Integer> priceList );
+    void update(String companyName,int price);
 }

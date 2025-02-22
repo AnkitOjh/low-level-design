@@ -11,4 +11,8 @@ public class Transaction {
         this.orderType = orderType;
         this.totalPrice  = totalPrice;
     }
+
+    public int getTotalPrice(){
+        return this.totalPrice;
+    }
 }

@@ -17,4 +17,9 @@ public class SellOrder implements Order{
     public int executeOrder() {
         return stock.sellStock(quantity);
     }
+
+    @Override
+    public void setOrderStaus(OrderStaus orderStaus) {
+        this.orderStaus = orderStaus;
+    }
 }

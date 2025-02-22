@@ -13,8 +13,11 @@ public class BuyOrder implements Order{
         this.stock = stock;
         this.user = user;
     }
+
+    public void setOrderStaus(OrderStaus orderStaus){
+        this.orderStaus = orderStaus;
+    }
     @Override
     public int executeOrder() {
-        return stock.purchaseStock(quantity);
-    }
+        return stock.purchaseStock(quantity);    }
 }

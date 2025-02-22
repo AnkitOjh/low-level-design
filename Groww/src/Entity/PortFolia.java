@@ -31,5 +31,9 @@ public class PortFolia {
     public void addOrder(Order order){
         this.orders.add(order);
     }
+
+    public List<Stock> getStockList(){
+        return this.stockList;
+    }
 }
 

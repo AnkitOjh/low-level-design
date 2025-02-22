@@ -1,15 +1,18 @@
 package Entity;
 
+import Service.NiftyStock;
+
 import java.util.List;
 
 public class IStockUpdateImpl implements IStockUpdate{
-    private List<Stock> stockList;
+    private NiftyStock niftyStock;
 
-
+    public IStockUpdateImpl(NiftyStock niftyStock){
+        this.niftyStock = niftyStock;
+    }
     @Override
-    public void update(List<Integer> priceList) {
-        for(int i=0;i<stockList.size();i++){
-            stockList.get(0).setPrice(priceList.get(i));
-        }
+    public void update(String companyName,int price) {
+        niftyStock.getHashMap().get(companyName).setPrice(price);
+        niftyStock.printAllStocks();
     }
 }
