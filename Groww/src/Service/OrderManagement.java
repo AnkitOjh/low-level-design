@@ -19,7 +19,7 @@ public class OrderManagement {
     public int checkPrice(String companyName,int quantity){
         if(niftyStock.getHashMap().containsKey(companyName)){
             if(niftyStock.getHashMap().get(companyName).getQuantity() < quantity){
-                throw new InsufficientStockException(companyName + "not present ");
+                throw new InsufficientStockException(companyName + "not enough stocks ");
             }
             else{
                 return niftyStock.getHashMap().get(companyName).getPrice()*quantity;
@@ -34,7 +34,7 @@ public class OrderManagement {
     public NiftyStock getNiftyStock(){
         return niftyStock;
     }
-    public void buyOrder(User user,int totalPrice,int quantity,String companyName){
+    public Order buyOrder(User user,int totalPrice,int quantity,String companyName){
         if(niftyStock.getHashMap().containsKey(companyName)){
             Stock stock = niftyStock.getHashMap().get(companyName);
 
@@ -45,6 +45,7 @@ public class OrderManagement {
                 Order order = new BuyOrder(3,niftyStock.getHashMap().get(companyName),user);
                 order.setOrderStaus(OrderStaus.PENDING);
                 System.out.println("Order placed waiting for payment");
+                return order;
             }
 
 
@@ -59,7 +60,7 @@ public class OrderManagement {
         if(paymentType.equalsIgnoreCase("DEBIT")){
             System.out.println("Payment Successfull");
             paymentContext.execute(new DebitCard(),user,price);
-            Stock stock = new Stock(companyName,niftyStock.getHashMap().get(companyName).getPrice(),quantity,1);
+            Stock stock = new Stock(companyName,quantity,niftyStock.getHashMap().get(companyName).getPrice(),1);
             executeOrder(quantity,user,stock,niftyStock.getHashMap().get(companyName),order);
         }
     }
@@ -77,6 +78,7 @@ public class OrderManagement {
             System.out.println("Company = "+ stock.getCompany()+"toal share =  "+ stock.getQuantity());
         });
     }
+
     public void addToPortfolio(User user, Stock stock,int quantity,Order order){
         if(stock.purchaseStock(quantity)>0){
             user.getPortFolia().addStock(stock);
