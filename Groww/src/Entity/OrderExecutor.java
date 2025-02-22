@@ -15,7 +15,7 @@ public class OrderExecutor {
         this.hashMap = new HashMap<>();
     }
 
-    public int executeOrder(Order order,User user){
+    public synchronized int executeOrder(Order order,User user){
 
         if(hashMap.containsKey(user)){
             hashMap.get(user).add(order);

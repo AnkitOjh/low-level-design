@@ -13,7 +13,7 @@ public class PaymentContext {
         this.hashMap = new HashMap<>();
     }
 
-    public void execute(IPaymentService iPaymentService, User user,int price){
+    public synchronized void execute(IPaymentService iPaymentService, User user,int price){
         iPaymentService.pay();
         hashMap.put(user,price);
     }

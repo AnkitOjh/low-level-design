@@ -16,7 +16,7 @@ public class OrderManagement {
         paymentContext = new PaymentContext();
     }
 
-    public int checkPrice(String companyName,int quantity){
+    public synchronized int checkPrice(String companyName,int quantity){
         if(niftyStock.getHashMap().containsKey(companyName)){
             if(niftyStock.getHashMap().get(companyName).getQuantity() < quantity){
                 throw new InsufficientStockException(companyName + "not enough stocks ");
@@ -34,7 +34,7 @@ public class OrderManagement {
     public NiftyStock getNiftyStock(){
         return niftyStock;
     }
-    public Order buyOrder(User user,int totalPrice,int quantity,String companyName){
+    public synchronized Order buyOrder(User user,int totalPrice,int quantity,String companyName){
         if(niftyStock.getHashMap().containsKey(companyName)){
             Stock stock = niftyStock.getHashMap().get(companyName);
 
@@ -55,7 +55,7 @@ public class OrderManagement {
 
     }
 
-    public void payPrice(int price,String paymentType,User user,String companyName, int quantity,Order order){
+    public synchronized void payPrice(int price,String paymentType,User user,String companyName, int quantity,Order order){
 
         if(paymentType.equalsIgnoreCase("DEBIT")){
             System.out.println("Payment Successfull");
@@ -65,7 +65,7 @@ public class OrderManagement {
         }
     }
 
-    private void executeOrder(int quantity,User user,Stock stock,Stock parentStock,Order order){
+    private synchronized void executeOrder(int quantity,User user,Stock stock,Stock parentStock,Order order){
         user.getPortFolia().addStock(stock);
         System.out.println("Order executed successfully");
         parentStock.setQuantity(parentStock.getQuantity()-stock.getQuantity());
@@ -79,7 +79,7 @@ public class OrderManagement {
         });
     }
 
-    public void sellStock(int quantity,String company,User user){
+    public synchronized void sellStock(int quantity,String company,User user){
         user.getPortFolia().getStockList().forEach(stock -> {
             if(stock.getCompany().equalsIgnoreCase(company)){
                 if(stock.getQuantity()>quantity){
@@ -97,7 +97,7 @@ public class OrderManagement {
 
     }
 
-    public void addToPortfolio(User user, Stock stock,int quantity,Order order){
+    public synchronized void addToPortfolio(User user, Stock stock,int quantity,Order order){
         if(stock.purchaseStock(quantity)>0){
             user.getPortFolia().addStock(stock);
             user.getTransactionList().add(new Transaction(1,"Buy",123));

@@ -24,7 +24,7 @@ public class NiftyStock {
         return this.stringStockHashMap;
     }
 
-    public void printAllStocks(){
+    public synchronized void printAllStocks(){
         for(Map.Entry<String,Stock> entry : this.stringStockHashMap.entrySet()){
             System.out.println("Company = "+ entry.getKey() + "Price = "+ entry.getValue().getPrice()+ "Quantity = "+ entry.getValue().getQuantity());
         }

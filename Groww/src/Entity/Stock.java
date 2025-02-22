@@ -4,9 +4,9 @@ import Service.InsufficientFundException;
 import Service.InsufficientStockException;
 
 public class Stock {
-    private String company;
+    private final String company;
 
-    private int id;
+    private final int id;
     private int quantity;
     private int price;
     private String status;
