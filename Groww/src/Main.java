@@ -22,6 +22,12 @@ public class Main {
         Order order = orderManagement.buyOrder(user,price,quantity,companyName);
         orderManagement.payPrice(price,"DEBIT",user,companyName,quantity,order);
         orderManagement.printPortfolio(user);
+        niftyStock.printAllStocks();
+        orderManagement.sellStock(3,"tata",user);
+        orderManagement.printPortfolio(user);
+        System.out.println("Nifty after selling");
+        niftyStock.printAllStocks();
+
 
 
 

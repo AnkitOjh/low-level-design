@@ -79,6 +79,24 @@ public class OrderManagement {
         });
     }
 
+    public void sellStock(int quantity,String company,User user){
+        user.getPortFolia().getStockList().forEach(stock -> {
+            if(stock.getCompany().equalsIgnoreCase(company)){
+                if(stock.getQuantity()>quantity){
+                    stock.setQuantity(stock.getQuantity()-quantity);
+                    System.out.println("Refunded money "+ quantity*stock.getPrice());
+                } else if(stock.getQuantity() == quantity){
+                    user.getPortFolia().getStockList().remove(stock);
+                    System.out.println("Sold stock "+ quantity*stock.getPrice());
+                } else{
+                    throw new InsufficientStockException("Not enough stock to sell");
+                }
+                niftyStock.getHashMap().get(company).setQuantity(niftyStock.getHashMap().get(company).getQuantity()+quantity);
+            }
+        });
+
+    }
+
     public void addToPortfolio(User user, Stock stock,int quantity,Order order){
         if(stock.purchaseStock(quantity)>0){
             user.getPortFolia().addStock(stock);
