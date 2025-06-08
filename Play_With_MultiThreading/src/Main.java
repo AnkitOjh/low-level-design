@@ -4,7 +4,6 @@ import java.util.concurrent.*;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        System.out.println("Hello world!");
 //        Elevator elevator = new Elevator();
 //        Thread th1 = new Thread(elevator);
 //
